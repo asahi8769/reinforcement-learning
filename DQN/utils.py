@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import gym
 
+
 def plot_learning_curve(x, scores, epsilons, filename, lines=None):
     fig=plt.figure()
     ax=fig.add_subplot(111, label="1")
@@ -18,7 +19,7 @@ def plot_learning_curve(x, scores, epsilons, filename, lines=None):
     N = len(scores)
     running_avg = np.empty(N)
     for t in range(N):
-	    running_avg[t] = np.mean(scores[max(0, t-20):(t+1)])
+        running_avg[t] = np.mean(scores[max(0, t-20):(t+1)])
 
     ax2.scatter(x, running_avg, color="C1")
     ax2.axes.get_xaxis().set_visible(False)
@@ -32,6 +33,7 @@ def plot_learning_curve(x, scores, epsilons, filename, lines=None):
             plt.axvline(x=line)
 
     plt.savefig(filename)
+
 
 class RepeatActionAndMaxFrame(gym.Wrapper):
     def __init__(self, env=None, repeat=4, clip_reward=False, no_ops=0,
