@@ -2,3 +2,4 @@ venv
 pulled
 .idea
 __pycache__
+.git

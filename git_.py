@@ -1,10 +1,12 @@
 from utility_functions import subprocess_cmd, make_pulled_dir
 import os
+import shutil
 
 
 class GitCommandLines():
     def __init__(self):
         self.repository = r'https://github.com/asahi8769/reinforcement-learning.git'
+        self.abs_dir = None
         self.rel_dir = None
         subprocess_cmd (f'git config --global user.name Ilhee Lee')
         subprocess_cmd (f'git config --global user.email asahi8769@gmail.com')
@@ -21,10 +23,12 @@ class GitCommandLines():
         subprocess_cmd (f'git remote add origin {self.repository}')
         subprocess_cmd (f'git push --force origin master')
         subprocess_cmd (f'git remote remove origin')
+        self.manage_pulls()
 
     def clone_rep(self):
-        self.rel_dir = os.path.relpath(make_pulled_dir(), os.getcwd())
-        subprocess_cmd (f'git clone {self.repository[:-4]} {self.rel_dir}')
+        self.abs_dir = make_pulled_dir()
+        self.rel_dir = os.path.relpath(self.abs_dir, os.getcwd())
+        subprocess_cmd(f'git clone --depth=1 {self.repository[:-4]} {self.rel_dir}')
 
     def history(self):
         subprocess_cmd (f'git log ')
@@ -32,6 +36,14 @@ class GitCommandLines():
     def ask_overwrite(self):
         if input('Overwrite current repository? (y/n, Default : n) :').lower() != 'y':
             return False
+
+    def manage_pulls(self):
+
+        if len(sorted(os.listdir('pulled'), reverse=True)) > 3:
+            print(len(sorted(os.listdir('pulled'), reverse=True)))
+            shutil.rmtree(os.path.join(
+                'pulled', sorted(os.listdir('pulled'), reverse=True)[len(sorted(os.listdir('pulled'), reverse=True))-3]),ignore_errors=True)
+            # os.rmdir(os.path.join('pulled', sorted(os.listdir('pulled'), reverse=True)[-1]))
 
 
 if __name__ == "__main__":
