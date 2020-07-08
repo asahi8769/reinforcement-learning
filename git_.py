@@ -13,6 +13,7 @@ class GitCommandLines():
 
     def push_rep(self):
         self.clone_rep()
+        self.manage_pulls()
         if self.ask_overwrite() is False:
             os.startfile(self.rel_dir)
             return
@@ -23,7 +24,7 @@ class GitCommandLines():
         subprocess_cmd (f'git remote add origin {self.repository}')
         subprocess_cmd (f'git push --force origin master')
         subprocess_cmd (f'git remote remove origin')
-        self.manage_pulls()
+
 
     def clone_rep(self):
         self.abs_dir = make_pulled_dir()
@@ -38,7 +39,6 @@ class GitCommandLines():
             return False
 
     def manage_pulls(self):
-
         if len(sorted(os.listdir('pulled'), reverse=True)) > 3:
             print(len(sorted(os.listdir('pulled'), reverse=True)))
             shutil.rmtree(os.path.join(
