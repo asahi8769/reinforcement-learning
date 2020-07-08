@@ -40,9 +40,9 @@ class GitCommandLines():
 
     def manage_pulls(self):
         if len(sorted(os.listdir('pulled'), reverse=True)) > 3:
-            print(len(sorted(os.listdir('pulled'), reverse=True)))
+            print('Pulls :', len(sorted(os.listdir('pulled'), reverse=True)))
             shutil.rmtree(os.path.join(
-                'pulled', sorted(os.listdir('pulled'), reverse=True)[len(sorted(os.listdir('pulled'), reverse=True))-3]),ignore_errors=True)
+                'pulled', sorted(os.listdir('pulled'), reverse=True)[3-len(sorted(os.listdir('pulled'), reverse=True))]),ignore_errors=True)
             # os.rmdir(os.path.join('pulled', sorted(os.listdir('pulled'), reverse=True)[-1]))
 
 
