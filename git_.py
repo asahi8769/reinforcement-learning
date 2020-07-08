@@ -29,9 +29,7 @@ class GitCommandLines():
     def clone_rep(self):
         self.abs_dir = make_pulled_dir()
         self.rel_dir = os.path.relpath(self.abs_dir, os.getcwd())
-        # subprocess_cmd(f'git clone --depth=1 {self.repository[:-4]} {self.rel_dir}'
-        # subprocess_cmd(f'git archive --remote=<{self.repository[:-4]}L> | tar -t')
-        subprocess_cmd(f'cd {self.rel_dir} & git archive --remote=<{self.repository[:-4]}L> | tar -t')
+        subprocess_cmd(f'git clone --depth=1 {self.repository[:-4]} {self.rel_dir}')
 
     def history(self):
         subprocess_cmd (f'git log ')
