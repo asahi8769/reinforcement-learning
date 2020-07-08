@@ -10,6 +10,7 @@ class GitCommandLines():
 
     def push_rep(self):
         self.clone_rep()
+        self.ask_overwrite()
         subprocess_cmd (f'git init')
         subprocess_cmd (f'git add .')
         subprocess_cmd (f'git config --global http.sslVerify false')
@@ -24,6 +25,10 @@ class GitCommandLines():
 
     def history(self):
         subprocess_cmd (f'git log ')
+
+    def ask_overwrite(self):
+        if input('Overwrite current repository? (y/n, Default : n)').lower() != 'y':
+            return
 
 
 if __name__ == "__main__":
