@@ -4,7 +4,7 @@ from dqn_agent import DQNAgent
 from utils import plot_learning_curve, make_env
 
 if __name__ == '__main__':
-    env = make_env('CartPole-v0')
+    env = make_env('PongNoFrameskip-v4')
     best_score = -np.inf
     load_checkpoint = False
     n_games = 100
