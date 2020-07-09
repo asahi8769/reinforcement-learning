@@ -12,7 +12,7 @@ def dqn_train():
     load_checkpoint = False
     save_checkpoint = True
     learning_enabled = True
-    rendering_enabled = True
+    rendering_enabled = False
 
     n_games = 100
     agent = DQNAgent(gamma=0.99, epsilon=1.0, lr=0.0001, input_dims=(env.observation_space.shape),
@@ -67,6 +67,7 @@ def dqn_train():
 
     x = [i+1 for i in range(len(scores))]
     plot_learning_curve(steps_array, scores, eps_history, figure_file)
+
 
 if __name__ == '__main__':
     dqn_train()
