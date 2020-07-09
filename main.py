@@ -6,9 +6,9 @@ sys.path.append(r'D:\devs\reinforce\venv\Scripts')
 
 
 class ReinforceMain:
-
     print('Start DQN Learning')
     dqn_train()
+
 
 if __name__ == '__main__':
     ReinforceMain()

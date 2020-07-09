@@ -8,7 +8,7 @@ import pickle
 def dqn_train():
     env = make_env('PongNoFrameskip-v4')
 
-    load_checkpoint = True
+    load_checkpoint = False
     save_checkpoint = True
     learning_enabled = True
     rendering_enabled = False
@@ -57,7 +57,7 @@ def dqn_train():
             best_score = avg_score
             if save_checkpoint:
                agent.save_models()
-               with open('models/best_score.pkl', 'rb') as file:
+               with open('models/best_score.pkl', 'wb') as file:
                    pickle.dump(best_score, file)
 
         eps_history.append(agent.epsilon)
